@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../assets/normalize.css">
+        <link rel="stylesheet" href="../assets/index.css">
+        <script src="../js/form.js"></script>
+    </head>
+    <body>
+        <section class="page bg">
+            <div id="screen">
+                Большое спасибо за ваш отзыв!
+            </div>
+            <main class="container">
+                <h1 class="form__header">Связь с организацией</h1>
+            <a class="btn-back btn-back-form" href="./home.html">
+                <button class="btn btn-primary" id="btn-down">
+                    <i class="ico ico-left-2"></i>
+                </button>
+            </a>
+
+     <form action="mailto:da.belyaev@mail.ru" method="POST" enctype="text/plain" name="Форма обратной связи DMT" id="dmtform" class="form">
+         <input name="Имя" type="text" class="form__input" placeholder="Имя">
+         <input name="Почта" type="email" class="form__input" placeholder="E-mail">
+         <input name="Телефон" type="phone" class="form__input" placeholder="Телефон">
+<textarea name="Комментарий" id="" cols="34" rows="4" placeholder="Текст" class="form__textarea"></textarea>
+<button class="form__button" type="submit" value="send">Отправить</button>
+     </form>
+            </main>
+        </section>
+    </body>
+</html>
