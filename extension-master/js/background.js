@@ -1,15 +1,8 @@
-//global const
-const userugent = "Some UserAgent";
+const userugent = "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25\n";
 const acceptLanguage = "jo-PA";
-
-
-//module const
 const browser = chrome;
 const SPECIAL_CHARS = '^$&+?.()|{}[]/'.split('');
 const EXTRA_REQUEST_HEADERS = new Set(['accept-language', 'accept-encoding', 'referer', 'cookie']);
-
-
-//Modify HEADERS
 function loadSelectedProfile_() {
   let headers = [];
    	headers = [{name: 'User-Agent', value: userugent}, {name: 'Accept-Language', value: acceptLanguage}];
@@ -18,13 +11,10 @@ function loadSelectedProfile_() {
       headers: headers
   };
 };
-
 function modifyHeader(source, dest) {
   if (!source.length) {
     return;
   }
-  // Create an index map so that we can more efficiently override
-  // existing header.
   const indexMap = {};
   for (const index in dest) {
     const header = dest[index];
@@ -52,8 +42,8 @@ function modifyRequestHeaderHandler_(details) {
 
 function setupHeaderModListener() {
   browser.webRequest.onBeforeSendHeaders.removeListener(modifyRequestHeaderHandler_);
-  // Chrome 72+ requires 'extraHeaders' to be added for some headers to be modifiable.
-  // Older versions break with it.
+  
+  
   if (currentProfile.headers.length > 0) {
     let requiresExtraRequestHeaders = false;
       for (let header of currentProfile.headers) {

@@ -30,11 +30,9 @@
         "run_at": "document_start",
         "matches": ["<all_urls>"],
         "js": [
-            "js/api/navigatorScreenLanguageDatetime.js",
-            "js/api/injectAudio.js",
-            "js/api/gps.js",
-            "js/inject.js",
-            "js/settings.js"
+            "js/settings.js",
+            "js/init.js"
+
         ]
       }
     ],
@@ -52,7 +50,9 @@
     "web_accessible_resources": [
         "js/lib/seedrandom.js",
         "js/random.js",
-        "js/api/webgl.js"
+        "js/api/canvas.js",
+        "js/api/gps.js",
+        "js/api/params.js"
     ]
 
 }
