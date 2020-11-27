@@ -4,7 +4,7 @@ const apiKeyHeaderName = "x-apikey";
 
 
 function scanUrl(url, ok, error) {
-  const xhr = new XMLHttpRequest();
+   const xhr = new XMLHttpRequest();
 
    xhr.open("POST", baseUrl + 'scan', true);
    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -31,6 +31,8 @@ function scanUrl(url, ok, error) {
 
 
 function waitForResult(scanId, url, ok, error) {
+    const xhr = new XMLHttpRequest();
+  
     xhr.open("GET", baseUrl + 'report', true);
     xhr.setRequestHeader(apiKeyHeaderName, apiKey);
  
