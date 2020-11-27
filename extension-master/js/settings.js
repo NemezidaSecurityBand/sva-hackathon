@@ -7,6 +7,9 @@ if(document.readyState === 'loading') {
 
 function afterDOMLoaded() {
 	const btnUp = document.getElementById('btn-up');
+	if (!btnUp){
+		return
+	}
 	const btnDown = document.getElementById('btn-down');
 	console.log(btnDown)
 
