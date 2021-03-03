@@ -1,23 +1,23 @@
-if(document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded',handleButton);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleButton);
 } else {
     handleButton();
 }
 
-function handleButton(){
-    const submarine =document.getElementById('submarine');
+function handleButton() {
+    const submarine = document.getElementById('submarine');
     console.log(submarine)
     var isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
     localStorage.setItem('periscope_isOn', isOn);
-    const buttonEl =document.getElementById("on_off")
+    const buttonEl = document.getElementById("on_off")
     console.log(isOn)
-    if (parseInt(isOn))
-          {buttonEl.classList.add("btn-primary");
-          submarine.classList.add("floating");}
-     else { 
-         buttonEl.classList.remove("btn-primary")
-         submarine.classList.add("hidden")
-        }
+    if (parseInt(isOn)) {
+        buttonEl.classList.add("btn-primary");
+        submarine.classList.add("floating");
+    } else {
+        buttonEl.classList.remove("btn-primary")
+        submarine.classList.add("hidden")
+    }
     buttonEl.addEventListener("click", function () {
         if (parseInt(isOn)) {
             isOn = 0;
