@@ -3,13 +3,13 @@
 * containing characters in the 'charset' string.
 */
 function randomString(length, charset) {
-	var string = "";
+    var string = "";
 
-	for (var i = 0; i < length; i++) {
-		string += charset[randomNumber(0, charset.length)];
-	}
+    for (var i = 0; i < length; i++) {
+        string += charset[randomNumber(0, charset.length)];
+    }
 
-	return string;
+    return string;
 }
 
 /*
@@ -26,5 +26,5 @@ function randomBoolean() {
 * Largest possible value is 'max - 1'.
 */
 function randomNumber(min, max) {
-	return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min) + min);
 }
