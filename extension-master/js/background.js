@@ -1,4 +1,4 @@
-const userugent = "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25";
+const useragent = "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25";
 const acceptLanguage = "en-US";
 const DNT = "1";
 const browser = chrome;
@@ -7,10 +7,18 @@ const EXTRA_REQUEST_HEADERS = new Set(['accept-language', 'accept-encoding', 're
 
 function loadSelectedProfile_() {
     let headers = [];
-    headers = [{name: 'User-Agent', value: userugent}, {name: 'Accept-Language', value: acceptLanguage}, {
-        name: 'DNT',
-        value: DNT
-    }];
+    headers = [
+        {
+            name: 'User-Agent', value: useragent
+        },
+        {
+            name: 'Accept-Language', value: acceptLanguage
+        },
+        {
+            name: 'DNT',
+            value: DNT
+        }
+    ];
     console.log(headers);
     return {
         headers: headers
@@ -67,7 +75,7 @@ function setupHeaderModListener() {
 }
 
 function initializeStorage() {
-    currentProfile = loadSelectedProfile_();
+    let currentProfile = loadSelectedProfile_();
     setupHeaderModListener();
 
     window.addEventListener('storage', function (e) {
@@ -76,7 +84,7 @@ function initializeStorage() {
     });
 }
 
-var isOn = parseInt(localStorage.getItem('periscope_isOn'))
+let isOn = parseInt(localStorage.getItem('periscope_isOn'))
 if (isOn) {
     initializeStorage();
 }
