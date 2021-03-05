@@ -1,5 +1,5 @@
-var isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0
-if (true) {
+var isOn = parseInt(localStorage.getItem('periscope_isOn'))
+if (isOn) {
     var lat = 52.200;
     var lon = 42.900;
     var acc = 400;

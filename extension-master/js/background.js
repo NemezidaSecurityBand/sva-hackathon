@@ -76,8 +76,10 @@ function initializeStorage() {
     });
 }
 
-initializeStorage();
-
+var isOn = parseInt(localStorage.getItem('periscope_isOn'))
+if (isOn) {
+    initializeStorage();
+}
 
 
 

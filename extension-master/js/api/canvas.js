@@ -1,5 +1,5 @@
-
-if (true) {
+var isOn = parseInt(localStorage.getItem('periscope_isOn'))
+if (isOn) {
     (function () {
         'use strict';
         const IS_WEBGL2 = true;

@@ -18,7 +18,7 @@ function handleButton() {
         buttonEl.classList.remove("btn-primary")
         submarine.classList.add("hidden")
     }
-    buttonEl.addEventListener("click", function () {
+    buttonEl.addEventListener("click",  () => {
         if (parseInt(isOn)) {
             isOn = 0;
             localStorage.setItem('periscope_isOn', isOn)
