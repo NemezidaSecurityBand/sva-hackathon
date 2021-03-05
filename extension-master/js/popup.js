@@ -7,10 +7,13 @@ if (document.readyState === 'loading') {
 function handleButton() {
     const submarine = document.getElementById('submarine');
     console.log(submarine)
-    var isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
+
+    let isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
     localStorage.setItem('periscope_isOn', isOn);
+
     const buttonEl = document.getElementById("on_off")
     console.log(isOn)
+
     if (parseInt(isOn)) {
         buttonEl.classList.add("btn-primary");
         submarine.classList.add("floating");
@@ -18,7 +21,8 @@ function handleButton() {
         buttonEl.classList.remove("btn-primary")
         submarine.classList.add("hidden")
     }
-    buttonEl.addEventListener("click",  () => {
+
+    buttonEl.addEventListener("click", () => {
         if (parseInt(isOn)) {
             isOn = 0;
             localStorage.setItem('periscope_isOn', isOn)

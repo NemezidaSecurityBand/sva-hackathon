@@ -36,7 +36,6 @@ function scanUrl(resource) {
         });
 }
 
-
 /**
  *
  * @param resource - урла для сканирования
@@ -50,12 +49,11 @@ async function getReportForUrl(resource) {
         allinfo: true
     }
     url.search = new URLSearchParams(params).toString();
-    let response = await fetch(url);
+    let response = await fetch(Urls.report);
     if (response.ok) {
         let infoAboutUrl = await response.json();
         console.log(infoAboutUrl);
 
-        // let fails = infoAboutUrl.scans.filter(scan => scan.)
         return infoAboutUrl;
     } else console.log("Алярма virus total не отработал")
 }

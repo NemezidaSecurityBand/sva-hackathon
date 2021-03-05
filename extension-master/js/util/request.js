@@ -1,8 +1,7 @@
 /**
  * Модуль запросов
  */
-const request = {
-
+const Request = {
     method: {
         POST: "POST",
         GET: "GET",
@@ -19,6 +18,7 @@ const request = {
         });
         return await response.json();
     },
+
     get: async (url, params = {}) => {
         let uri = new URL(url);
         url.search = new URLSearchParams(params).toString();
