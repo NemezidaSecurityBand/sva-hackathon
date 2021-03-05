@@ -24,14 +24,15 @@
         };
         (document.head || document.documentElement).appendChild(script);
     }
-    var isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0
+    const isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
     console.log("111");
     console.log(isOn);
-
-    inject("js/lib/seedrandom.js");
-    inject("js/random.js", seed);
-    inject("js/api/canvas.js");
-    inject("js/api/gps.js");
-    inject("js/api/params.js");
+    if(isOn) {
+        inject("js/lib/seedrandom.js");
+        inject("js/random.js", seed);
+        inject("js/api/canvas.js");
+        inject("js/api/gps.js");
+        inject("js/api/params.js");
+    }
 
 })(window.location.hostname);
