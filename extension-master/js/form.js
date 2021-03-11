@@ -1,19 +1,10 @@
+import {Urls} from './util/urls.js'
+import {Request} from './util/request.js'
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', handleForm);
 } else {
     handleForm();
-}
-
-async function postRequest(url, data) {
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(data)
-    });
-    return await response.json();
 }
 
 function sendMail() {
@@ -23,11 +14,14 @@ function sendMail() {
         message: document.getElementById('comment').value,
         reporterPhoneNumber: document.getElementById('phone').value
     }
-    postRequest(Urls.sendMail, data)
+    const headers =  {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Referer': "DNT-client"
+    };
+    Request.post(Urls.sendMail, headers, data)
         .then((data) => {
             console.log(data);
-        });
-
+        })
 }
 
 function handleForm() {

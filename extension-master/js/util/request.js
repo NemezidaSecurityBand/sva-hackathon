@@ -1,27 +1,20 @@
 /**
  * Модуль запросов
  */
-const Request = {
-    method: {
-        POST: "POST",
-        GET: "GET",
-        PUT: "PUT",
-        PATH: "PATH",
-        DELETE: "DELETE"
-    },
+export const Request = {
 
     post: async (url = "", headers = {}, data = {}) => {
         const response = await fetch(url, {
-            method: this.method.POST,
+            method: "POST",
             headers: headers,
             body: JSON.stringify(data)
         });
         return await response.json();
     },
 
-    get: async (url, params = {}) => {
+    get: async (url = "", params = {}) => {
         let uri = new URL(url);
-        url.search = new URLSearchParams(params).toString();
+        uri.search = new URLSearchParams(params).toString();
         return  await fetch(url);
     }
 }
