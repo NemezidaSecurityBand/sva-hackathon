@@ -7,7 +7,6 @@ if (document.readyState === 'loading') {
 function handleButton() {
     const submarine = document.getElementById('submarine');
     console.log(submarine)
-
     let isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
     localStorage.setItem('periscope_isOn', isOn);
 
@@ -23,6 +22,7 @@ function handleButton() {
     }
 
     buttonEl.addEventListener("click", () => {
+        console.log(parseInt(isOn))
         if (parseInt(isOn)) {
             isOn = 0;
             localStorage.setItem('periscope_isOn', isOn)
@@ -39,6 +39,6 @@ function handleButton() {
                 submarine.classList.add("floating")
             }, 6000);
         }
-
     })
 }
+

@@ -1,3 +1,5 @@
+import {Urls} from "./util/urls";
+
 const useragent = "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25";
 const acceptLanguage = "en-US";
 const DNT = "1";
@@ -5,9 +7,9 @@ const browser = chrome;
 const SPECIAL_CHARS = '^$&+?.()|{}[]/'.split('');
 const EXTRA_REQUEST_HEADERS = new Set(['accept-language', 'accept-encoding', 'referer', 'cookie']);
 
+
 function loadSelectedProfile_() {
-    let headers = [];
-    headers = [
+    let headers = [
         {
             name: 'User-Agent', value: useragent
         },
@@ -23,7 +25,7 @@ function loadSelectedProfile_() {
     return {
         headers: headers
     };
-};
+}
 
 function modifyHeader(source, dest) {
     if (!source.length) {
@@ -43,17 +45,17 @@ function modifyHeader(source, dest) {
             indexMap[header.name.toLowerCase()] = dest.length - 1;
         }
     }
-};
+}
 
-function modifyRequestHeaderHandler_(details) {
+function modifyRequestHeaderHandler_(details, currentProfile) {
     if (currentProfile) {
         modifyHeader(currentProfile.headers, details.requestHeaders);
     }
     return {requestHeaders: details.requestHeaders};
-};
+}
 
 
-function setupHeaderModListener() {
+function setupHeaderModListener(currentProfile) {
     browser.webRequest.onBeforeSendHeaders.removeListener(modifyRequestHeaderHandler_);
 
 
@@ -78,16 +80,18 @@ function initializeStorage() {
     let currentProfile = loadSelectedProfile_();
     setupHeaderModListener();
 
-    window.addEventListener('storage', function (e) {
+    window.addEventListener('storage', (e) => {
         currentProfile = loadSelectedProfile_();
-        setupHeaderModListener();
+        let isOn = parseInt(localStorage.getItem('periscope_isOn'));
+        if(isOn){
+            setupHeaderModListener(currentProfile);
+        }
     });
 }
 
-let isOn = parseInt(localStorage.getItem('periscope_isOn'))
-if (isOn) {
-    initializeStorage();
-}
 
+
+
+initializeStorage();
 
 
