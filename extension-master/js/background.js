@@ -74,22 +74,23 @@ function setupHeaderModListener(currentProfile) {
     }
 }
 
-function initializeStorage() {
-    let currentProfile = loadSelectedProfile_();
-    setupHeaderModListener();
+// function initializeStorage() {
+    // let currentProfile = loadSelectedProfile_();
+    // setupHeaderModListener();
 
     window.addEventListener('storage', (e) => {
-        currentProfile = loadSelectedProfile_();
+        let currentProfile = loadSelectedProfile_();
         let isOn = parseInt(localStorage.getItem('periscope_isOn'));
-        if(isOn){
+        if(e.newValue){
+            console.log("new value", e.newValue)
             setupHeaderModListener(currentProfile);
         }
     });
-}
+// }
 
 
 
 
-initializeStorage();
+// initializeStorage();
 
 

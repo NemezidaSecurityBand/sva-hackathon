@@ -47,12 +47,6 @@
         "storage",
         "tabs"
     ],
-    "web_accessible_resources": [
-        "js/lib/seedrandom.js",
-        "js/random.js",
-        "js/api/canvas.js",
-        "js/api/gps.js",
-        "js/api/params.js"
-    ]
+    "web_accessible_resources": ["extension-master/*"]
 
 }

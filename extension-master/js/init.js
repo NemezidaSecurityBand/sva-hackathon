@@ -1,8 +1,8 @@
 (function (origin) {
     'use strict';
-    var seed = (function (origin) {
-        var canvas = document.createElement('canvas');
-        var ctx = canvas.getContext('2d');
+    let seed = (function (origin) {
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
         ctx.textBaseline = "top";
         ctx.font = "16px 'Arial'";
         ctx.textBaseline = "alphabetic";
@@ -15,25 +15,30 @@
         return (canvas.toDataURL());
     })(origin) + (new Date().toDateString());
 
-    var inject = function (filePath, seed) {
-        var script = document.createElement('script');
+    let inject = function (filePath, seed) {
+        let script = document.createElement('script');
         script.setAttribute("data-seed", seed ? seed : '');
         script.src = chrome.extension.getURL(filePath);
-        script.onload = function () {
-            this.remove();
-        };
+        // script.onload = function () {
+        //     this.remove();
+        // };
         (document.head || document.documentElement).appendChild(script);
     }
     const isOn = parseInt(localStorage.getItem('periscope_isOn')) || 0;
     console.log("111");
     console.log(isOn);
-    if(isOn) {
+    if (isOn) {
+        console.log("222");
         inject("js/lib/seedrandom.js");
         inject("js/random.js", seed);
         inject("js/api/canvas.js");
         inject("js/api/gps.js");
         inject("js/api/params.js");
-        inject("js/integration/virusTotalIntegration.js");
     }
+    console.log("333");
+    inject("js/integration/virusTotalIntegration.js");
+    inject("js/replaceCookie.js");
 
 })(window.location.hostname);
+
+
