@@ -6,8 +6,9 @@ if (document.readyState === 'loading') {
 const apiKey = "fdc51984c8957e2af90d0a191db5067a5592f0becf042cab8c5e62925068721d";
 
 function scan() {
-    chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
-        let uri = new URL(tabs[0].url);
+    // chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
+    //     let uri = new URL(tabs[0].url);
+        let uri = new URL(window.location.href);
         return getReportForUrl(uri.origin)
             .then(r => {
                 console.log("RRRRR", r)
@@ -33,6 +34,7 @@ function scan() {
                             if (permission === "granted") {
                                 let notification = new Notification("Сайт признан безопасным для посещения.");
                             }
+
                         });
                     }
                 } else {
@@ -45,7 +47,7 @@ function scan() {
                 }
                 return r;
             });
-    });
+    // });
 }
 
 /**
@@ -57,10 +59,16 @@ async function getReportForUrl(resource) {
     let url = new URL("https://www.virustotal.com/vtapi/v2/url/report");
     let params = {
         apikey: apiKey,
-        resource: resource
+        resource: resource,
+        scan: 1
     }
     url.search = new URLSearchParams(params).toString();
-    let response = await fetch(url);
+    let response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        }
+    });
     if (response.ok) {
         return await response.json();
     } else console.log("Алярма virus total не отработал")

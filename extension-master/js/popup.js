@@ -25,6 +25,7 @@ function handleButton() {
         if (parseInt(isOn)) {
             isOn = 0;
             localStorage.setItem('periscope_isOn', isOn)
+            document.cookie = "periscope_isOn" + "=" + isOn;
             buttonEl.classList.remove("btn-primary")
             submarine.classList.remove("floating")
             submarine.classList.add("hidden")
@@ -33,6 +34,7 @@ function handleButton() {
             submarine.classList.remove("hidden")
             submarine.classList.add("falling")
             localStorage.setItem('periscope_isOn', isOn)
+            document.cookie = "periscope_isOn" + "=" + isOn;
             buttonEl.classList.add("btn-primary")
             setTimeout(() => {
                 submarine.classList.add("floating")

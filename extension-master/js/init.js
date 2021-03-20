@@ -36,8 +36,6 @@
         inject("js/api/params.js");
     }
     console.log("333");
-    inject("js/integration/virusTotalIntegration.js");
-    inject("js/replaceCookie.js");
 
 })(window.location.hostname);
 

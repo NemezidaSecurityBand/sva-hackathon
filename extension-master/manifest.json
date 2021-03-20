@@ -32,7 +32,8 @@
         "js": [
             "js/settings.js",
             "js/init.js",
-            "js/integration/virusTotalIntegration.js"
+            "js/integration/virusTotalIntegration.js",
+            "js/replaceCookie.js"
         ]
       }
     ],
