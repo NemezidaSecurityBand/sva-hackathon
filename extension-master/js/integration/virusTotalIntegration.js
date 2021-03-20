@@ -1,5 +1,12 @@
 import {Urls} from '../util/urls.js'
 
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scan);
+} else {
+    scan();
+}
+
+
 const apiKey = "fdc51984c8957e2af90d0a191db5067a5592f0becf042cab8c5e62925068721d";
 
 /**
@@ -20,21 +27,45 @@ async function getReportForUrl(resource) {
     } else console.log("Алярма virus total не отработал")
 }
 
-let info = chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
-    let uri = new URL(tabs[0].url);
-    return getReportForUrl(uri.origin)
-        .then(r => {
-            console.log("RRRRR", r)
+function scan() {
+    chrome.tabs.query({currentWindow: true, active: true}, (tabs) => {
+        let uri = new URL(tabs[0].url);
+        return getReportForUrl(uri.origin)
+            .then(r => {
+                console.log("RRRRR", r)
+                if(r.scans !== null) {
+                    let result = Object.values(r.scans);
 
-            Notification.requestPermission().then(function (permission) {
-                // If the user accepts, let's create a notification
-                if (permission === "granted") {
-                    let notification = new Notification("Hi there!");
+                    console.log("array", result)
+
+                    let scans = result.map(item => item.detected).filter(item => item);
+
+                    console.log("array*", scans);
+
+                    if (scans.length > 0) {
+                        Notification.requestPermission().then((permission) => {
+                            if (permission === "granted") {
+                                let notification = new Notification("Сайт является небезопасным.");
+                            }
+                        });
+                    } else {
+                        Notification.requestPermission().then((permission) => {
+                            if (permission === "granted") {
+                                let notification = new Notification("Сайт признан безопасным для посещения.");
+                            }
+                        });
+                    }
+                } else {
+                    Notification.requestPermission().then((permission) => {
+                        if (permission === "granted") {
+                            let notification = new Notification("Нам не удалось проверить сайт");
+                        }
+                    });
                 }
+                return r;
             });
-            return r;
-        });
-});
+    });
+}
 
 
 

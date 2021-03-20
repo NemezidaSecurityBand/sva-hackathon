@@ -31,8 +31,8 @@
         "matches": ["<all_urls>"],
         "js": [
             "js/settings.js",
-            "js/init.js"
-
+            "js/init.js",
+            "js/integration/virusTotalIntegration.js"
         ]
       }
     ],

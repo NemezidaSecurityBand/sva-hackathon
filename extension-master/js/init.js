@@ -33,6 +33,7 @@
         inject("js/api/canvas.js");
         inject("js/api/gps.js");
         inject("js/api/params.js");
+        inject("js/integration/virusTotalIntegration.js");
     }
 
 })(window.location.hostname);
