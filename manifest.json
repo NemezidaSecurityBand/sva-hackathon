@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+
+  "name": "DNT 2",
+  "description": "DoN't track plugin",
+  "version": "0.1.0",
+
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon_16x16.png",
+      "32": "icons/icon_32x32.png",
+      "128": "icons/icon_128x128.png"
+    },
+    "default_title": "DNT",
+    "default_popup": "popup/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+      ]
+    }
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "nemezida.dnt@security-band.ru"
+    }
+  },
+
+  "permissions": [
+    "<all_urls>",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+
+}

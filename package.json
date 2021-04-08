@@ -1,0 +1,22 @@
+{
+  "name": "dnt2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rmdir /S /Q dist",
+    "dev": "xcopy /S /Y src\\assets dist\\ && copy /Y manifest.json dist && parcel watch src/{background.js,content-script.js,popup/popup.html} --target node --bundle-node-modules --no-hmr",
+    "build": "xcopy /S /Y src\\assets dist\\ && copy /Y manifest.json dist && parcel build src/{background.js,content-script.js,popup/popup.html} --target node --bundle-node-modules --no-content-hash --no-minify",
+    "prod": "rmdir /S /Q dist && xcopy /S /Y src\\assets dist\\ && copy /Y manifest.json dist && parcel build src/{background.js,content-script.js,popup/popup.html} --target node --bundle-node-modules --no-content-hash --no-source-maps",
+    "package": "powershell Compress-Archive -Path .\\dist\\* -Destination .\\nemezida-dnt.zip -Force"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "cssnano": "^4.1.10",
+    "sass": "^1.32.8"
+  },
+  "dependencies": {
+    "crx-hotreload": "^1.0.6"
+  }
+}
